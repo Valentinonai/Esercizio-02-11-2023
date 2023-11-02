@@ -33,7 +33,7 @@ public class PizzaTest {
 
         Pizza p=(Pizza)ctx.getBean(str);
         int c=p.getCalories();
-//       Assertions.assertTrue(c>1012);
+       Assertions.assertTrue(c>1012);
        Assertions.assertEquals(c,exp);
    }
 }
