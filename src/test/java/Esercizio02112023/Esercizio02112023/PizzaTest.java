@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -26,10 +27,13 @@ public class PizzaTest {
        assertEquals(4.99,price);
    }
    @ParameterizedTest
-    @ValueSource(strings={"pizza_margherita","salami_pizza"})
-    void testParameterized(String str){
+//    @ValueSource(strings={"pizza_margherita","salami_pizza"})
+   @CsvSource({"pizza_margherita,1104","salami_pizza,1190"})
+    void testParameterized(String str,int exp){
+
         Pizza p=(Pizza)ctx.getBean(str);
         int c=p.getCalories();
-       Assertions.assertTrue(c>1012);
+//       Assertions.assertTrue(c>1012);
+       Assertions.assertEquals(c,exp);
    }
 }
